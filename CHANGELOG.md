@@ -36,6 +36,10 @@ Things to be included in the next release go here.
 
 - Single-frame `AnalogWaveform` behavior is preserved (`frame_count == 1`, `is_fastframe is False`); existing single-frame read/write paths are unchanged.
 
+### Fixed
+
+- Fixed `UnicodeDecodeError` when writing a waveform to CSV whose fixed-width axis-unit fields (`String2`, `String8`, `String20`, `String32`) contain valid NUL-terminated unit strings followed by non-UTF-8 padding bytes, as produced by instruments such as a Tektronix DPO71254C. `String.__str__` now truncates at the first NUL byte before decoding. ([#211](https://github.com/tektronix/tm_data_types/issues/211))
+
 ---
 
 ## v0.4.1 (2026-05-21)
